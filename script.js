@@ -45,8 +45,7 @@ const switchPlayer = function () {
   player1El.classList.toggle('player--active');
 };
 
-// rolling dice functionality
-btnRoll.addEventListener('click', function () {
+const roll = function () {
   if (playing) {
     // generating a random dice roll
     const dice = Math.trunc(Math.random() * 6) + 1;
@@ -66,9 +65,9 @@ btnRoll.addEventListener('click', function () {
       switchPlayer();
     }
   }
-});
+};
 
-btnHold.addEventListener('click', function () {
+const hold = function () {
   if (playing) {
     // add current score to active player
     scores[activePlayer] += currentScore;
@@ -77,7 +76,7 @@ btnHold.addEventListener('click', function () {
       scores[activePlayer];
 
     // check if player's score is >= 100
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= 20) {
       // Finish the game
       playing = false;
       document
@@ -94,9 +93,27 @@ btnHold.addEventListener('click', function () {
       switchPlayer();
     }
   }
+};
+// rolling dice functionality
+btnRoll.addEventListener('click', function () {
+  roll();
+});
+
+btnHold.addEventListener('click', function () {
+  hold();
 });
 
 // reset
 btnNew.addEventListener('click', function () {
   init();
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') roll();
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Shift') hold();
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === ' ') init();
 });
