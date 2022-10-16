@@ -7,17 +7,29 @@ const score0El = document.querySelector('#score--0');
 const score1El = document.querySelector('#score--1');
 const current0El = document.getElementById('current--0'); //same as query
 const current1El = document.getElementById('current--1');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
 
 const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnCloseModal = document.querySelector('.btn--close');
+const btnsOpenModal = document.querySelectorAll('.btn--open');
 
 // starting conditions
-
+const openModal = function () {
+  modal.classList.remove('hiddens');
+  overlay.classList.remove('hiddens');
+};
+const closeModal = function () {
+  modal.classList.add('hiddens');
+  overlay.classList.add('hiddens');
+};
 const hideDice = function () {
   diceEl.classList.add('hidden');
 };
+
 let scores, currentScore, activePlayer, playing;
 const init = function () {
   score0El.textContent = 0;
@@ -94,6 +106,14 @@ const hold = function () {
     }
   }
 };
+btnCloseModal.addEventListener('click', function () {
+  closeModal();
+});
+btnsOpenModal[0].addEventListener('click', openModal);
+// btnsOpenModal.addEventListener('click', function () {
+//   openModal();
+// });
+
 // rolling dice functionality
 btnRoll.addEventListener('click', function () {
   roll();
