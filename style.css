@@ -212,3 +212,6 @@ main {
 .list {
   font-size: medium;
 }
+.note {
+  color: red;
+}
