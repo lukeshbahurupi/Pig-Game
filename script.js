@@ -106,13 +106,9 @@ const hold = function () {
     }
   }
 };
-btnCloseModal.addEventListener('click', function () {
-  closeModal();
-});
+btnCloseModal.addEventListener('click', closeModal);
 btnsOpenModal[0].addEventListener('click', openModal);
-// btnsOpenModal.addEventListener('click', function () {
-//   openModal();
-// });
+overlay.addEventListener('click', closeModal);
 
 // rolling dice functionality
 btnRoll.addEventListener('click', function () {
@@ -130,10 +126,16 @@ btnNew.addEventListener('click', function () {
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') roll();
+  console.log(e.key);
 });
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Shift') hold();
 });
 document.addEventListener('keydown', function (e) {
   if (e.key === ' ') init();
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
 });
