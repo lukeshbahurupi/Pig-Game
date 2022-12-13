@@ -88,7 +88,7 @@ const hold = function () {
       scores[activePlayer];
 
     // check if player's score is >= 100
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= 20) {
       // Finish the game
       playing = false;
       document
